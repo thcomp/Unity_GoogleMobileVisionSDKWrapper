@@ -6,11 +6,12 @@ namespace com.google.android.gms.vision.face
 {
     public class FaceDetector : Detector<Face>
     {
-        public static readonly int accurate_mode = new AndroidJavaClass("com.google.android.gms.vision.face.facedetector").GetStatic<int>("accurate_mode");
-        public static readonly int all_classifications = new AndroidJavaClass("com.google.android.gms.vision.face.facedetector").GetStatic<int>("all_classifications");
-        public static readonly int fast_mode = new AndroidJavaClass("com.google.android.gms.vision.face.facedetector").GetStatic<int>("fast_mode");
-        public static readonly int no_classifications = new AndroidJavaClass("com.google.android.gms.vision.face.facedetector").GetStatic<int>("no_classifications");
-        public static readonly int no_landmarks = new AndroidJavaClass("com.google.android.gms.vision.face.facedetector").GetStatic<int>("no_landmarks");
+        public static readonly int ACCURATE_MODE = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").GetStatic<int>("ACCURATE_MODE");
+        public static readonly int ALL_CLASSIFICATIONS = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").GetStatic<int>("ALL_CLASSIFICATIONS");
+        public static readonly int ALL_LANDMARK = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").GetStatic<int>("ALL_LANDMARKS"); 
+        public static readonly int FAST_MODE = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").GetStatic<int>("FAST_MODE");
+        public static readonly int NO_CLASSIFICATIONS = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").GetStatic<int>("NO_CLASSIFICATIONS");
+        public static readonly int NO_LANDMARKS = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").GetStatic<int>("NO_LANDMARKS");
 
         private FaceDetector(AndroidJavaObject builderJO)
         {
@@ -39,12 +40,6 @@ namespace com.google.android.gms.vision.face
             {
                 AndroidJavaObject activityJO = AndroidHelper.GetUnityActivity();
                 mFaceDetectorBuilderJO = new AndroidJavaObject("com.google.android.gms.vision.face.FaceDetector$Builder", activityJO);
-
-                //int ACCURATE_MODE = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").Get<int>("ACCURATE_MODE");
-                //int ALL_CLASSIFICATIONS = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").Get<int>("ALL_CLASSIFICATIONS");
-                //int FAST_MODE = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").Get<int>("FAST_MODE");
-                //int NO_CLASSIFICATIONS = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").Get<int>("NO_CLASSIFICATIONS");
-                //int NO_LANDMARKS = new AndroidJavaClass("com.google.android.gms.vision.face.FaceDetector").Get<int>("NO_LANDMARKS");
             }
 
             public Builder SetClassificationType(int classificationType)

@@ -26,7 +26,6 @@ namespace com.google.android.gms.vision
 
             public Builder()
             {
-                AndroidJavaObject activityJO = AndroidHelper.GetUnityActivity();
                 mBuilderJO = new AndroidJavaObject("com.google.android.gms.vision.Frame$Builder");
             }
 
