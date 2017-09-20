@@ -2,21 +2,11 @@
 
 namespace com.google.android.gms.vision.face
 {
-    public class Face
+    public class Face : BaseAndroidJavaObjectWrapper
     {
-        private AndroidJavaObject mAndroidJO;
-
-        internal AndroidJavaObject AndroidJO
+        public Face(AndroidJavaObject androidJO) : base(androidJO)
         {
-            get
-            {
-                return mAndroidJO;
-            }
-        }
-
-        public Face(AndroidJavaObject androidJO)
-        {
-            mAndroidJO = androidJO;
+            // 処理なし
         }
     }
 }

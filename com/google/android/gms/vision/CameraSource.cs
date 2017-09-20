@@ -5,59 +5,55 @@ using UnityEngine;
 
 namespace com.google.android.gms.vision
 {
-    public class CameraSource
+    public class CameraSource : BaseAndroidJavaObjectWrapper
     {
-        private AndroidJavaObject mCameraSourceJO;
-
         private CameraSource(AndroidJavaObject builderJO)
         {
             AndroidJavaObject activityJO = AndroidHelper.GetUnityActivity();
-            mCameraSourceJO = builderJO.Call<AndroidJavaObject>("build");
+            mAndroidJO = builderJO.Call<AndroidJavaObject>("build");
         }
 
         public void Start()
         {
-            mCameraSourceJO = mCameraSourceJO.Call<AndroidJavaObject>("start");
+            mAndroidJO = mAndroidJO.Call<AndroidJavaObject>("start");
         }
 
         public void Stop()
         {
-            mCameraSourceJO.Call("stop");
+            mAndroidJO.Call("stop");
         }
 
         public void Release()
         {
-            mCameraSourceJO.Call("release");
+            mAndroidJO.Call("release");
         }
 
-        public class Builder
+        public class Builder : BaseAndroidJavaObjectWrapper
         {
-            private AndroidJavaObject mBuilderJO;
-
             public Builder(Detector<Face> detector)
             {
-                Initialize(detector.DetectorJO);
+                Initialize(detector.AndroidJO);
             }
 
             public Builder(Detector<Barcode> detector)
             {
-                Initialize(detector.DetectorJO);
+                Initialize(detector.AndroidJO);
             }
 
             public Builder(Detector<TextBlock> detector)
             {
-                Initialize(detector.DetectorJO);
+                Initialize(detector.AndroidJO);
             }
 
             private void Initialize(AndroidJavaObject detectorJO)
             {
                 AndroidJavaObject activityJO = AndroidHelper.GetUnityActivity();
-                mBuilderJO = new AndroidJavaObject("com.google.android.gms.vision.CameraSource$Builder", activityJO, detectorJO);
+                mAndroidJO = new AndroidJavaObject("com.google.android.gms.vision.CameraSource$Builder", activityJO, detectorJO);
             }
 
             public CameraSource Build()
             {
-                return new CameraSource(mBuilderJO);
+                return new CameraSource(mAndroidJO);
             }
         }
     }

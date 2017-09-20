@@ -3,65 +3,43 @@ using UnityEngine;
 
 namespace com.google.android.gms.vision
 {
-    public class Frame
+    public class Frame : BaseAndroidJavaObjectWrapper
     {
-        private AndroidJavaObject mFrameJO;
-
         internal Frame(AndroidJavaObject builderJO)
         {
-            mFrameJO = builderJO.Call<AndroidJavaObject>("build");
+            mAndroidJO = builderJO.Call<AndroidJavaObject>("build");
         }
 
-        internal AndroidJavaObject FrameJO
+        public class Builder : BaseAndroidJavaObjectWrapper
         {
-            get
-            {
-                return mFrameJO;
-            }
-        }
-
-        public class Builder
-        {
-            private AndroidJavaObject mBuilderJO;
-
             public Builder()
             {
-                mBuilderJO = new AndroidJavaObject("com.google.android.gms.vision.Frame$Builder");
+                mAndroidJO = new AndroidJavaObject("com.google.android.gms.vision.Frame$Builder");
             }
 
             public Frame Build()
             {
-                return new Frame(mBuilderJO);
+                return new Frame(mAndroidJO);
             }
 
             public Frame.Builder SetBitmap(Bitmap image)
             {
                 Debug.Log("image.AndroidJO = " + image.AndroidJO);
-                mBuilderJO = mBuilderJO.Call<AndroidJavaObject>("setBitmap", image.AndroidJO);
+                mAndroidJO = mAndroidJO.Call<AndroidJavaObject>("setBitmap", image.AndroidJO);
                 return this;
             }
         }
 
-        public class Metadata
+        public class Metadata : BaseAndroidJavaObjectWrapper
         {
-            private AndroidJavaObject mMetadataJO;
-
             public Metadata()
             {
-                mMetadataJO = new AndroidJavaObject("com.google.android.gms.vision.Frame$Metadata");
+                mAndroidJO = new AndroidJavaObject("com.google.android.gms.vision.Frame$Metadata");
             }
 
             public Metadata(AndroidJavaObject metadataJO)
             {
-                mMetadataJO = metadataJO;
-            }
-
-            internal AndroidJavaObject MetadataJO
-            {
-                get
-                {
-                    return mMetadataJO;
-                }
+                mAndroidJO = metadataJO;
             }
         }
     }

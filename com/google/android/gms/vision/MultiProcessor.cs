@@ -6,44 +6,34 @@ namespace com.google.android.gms.vision
     {
         private MultiProcessor(AndroidJavaObject builderJO)
         {
-            mProcessorJO = builderJO.Call<AndroidJavaObject>("build");
+            mAndroidJO = builderJO.Call<AndroidJavaObject>("build");
         }
 
         public override void ReceiveDetections(Detector<T>.Detections<T> detections)
         {
-            mProcessorJO.Call("ReceiveDetections", detections.DetectionsJO);
+            mAndroidJO.Call("ReceiveDetections", detections.AndroidJO);
         }
 
         public override void Release()
         {
-            mProcessorJO.Call("release");
+            mAndroidJO.Call("release");
         }
 
-        public class Builder<T>
+        public class Builder<T> : BaseAndroidJavaObjectWrapper
         {
-            private AndroidJavaObject mBuilderJO;
-
-            public AndroidJavaObject BuilderJO
-            {
-                get
-                {
-                    return mBuilderJO;
-                }
-            }
-
             public Builder(Factory factory)
             {
-                mBuilderJO = new AndroidJavaObject("com.google.android.gms.vision.MultiProcessor$Builder", factory);
+                mAndroidJO = new AndroidJavaObject("com.google.android.gms.vision.MultiProcessor$Builder", factory);
             }
 
             public MultiProcessor<T> Build()
             {
-                return new MultiProcessor<T>(mBuilderJO);
+                return new MultiProcessor<T>(mAndroidJO);
             }
 
             public Builder<T> SetMaxGapFrames(int maxGapFrames)
             {
-                mBuilderJO.Call("setMaxGapFrames", maxGapFrames);
+                mAndroidJO.Call("setMaxGapFrames", maxGapFrames);
                 return this;
             }
         }

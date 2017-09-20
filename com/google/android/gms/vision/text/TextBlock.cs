@@ -2,21 +2,11 @@
 
 namespace com.google.android.gms.vision.text
 {
-    public class TextBlock
+    public class TextBlock : BaseAndroidJavaObjectWrapper
     {
-        private AndroidJavaObject mAndroidJO;
-
-        internal AndroidJavaObject AndroidJO
+        public TextBlock(AndroidJavaObject androidJO) : base(androidJO)
         {
-            get
-            {
-                return mAndroidJO;
-            }
-        }
-
-        public TextBlock(AndroidJavaObject androidJO)
-        {
-            mAndroidJO = androidJO;
+            // 処理なし
         }
     }
 }

@@ -2,21 +2,11 @@
 
 namespace com.google.android.gms.vision.barcode
 {
-    public class Barcode
+    public class Barcode : BaseAndroidJavaObjectWrapper
     {
-        private AndroidJavaObject mAndroidJO;
-
-        internal AndroidJavaObject AndroidJO
+        public Barcode(AndroidJavaObject androidJO) : base(androidJO)
         {
-            get
-            {
-                return mAndroidJO;
-            }
-        }
-
-        public Barcode(AndroidJavaObject androidJO)
-        {
-            mAndroidJO = androidJO;
+            // 処理なし
         }
     }
 }

@@ -15,13 +15,13 @@ namespace com.google.android.gms.vision.face
 
         private FaceDetector(AndroidJavaObject builderJO)
         {
-            mDetectorJO = builderJO.Call<AndroidJavaObject>("build");
+            mAndroidJO = builderJO.Call<AndroidJavaObject>("build");
         }
 
         public override List<Face> Detect(Frame frame)
         {
             List<Face> ret = new List<Face>();
-            AndroidJavaObject detectedItemSparseArray = mDetectorJO.Call<AndroidJavaObject>("detect", frame.FrameJO);
+            AndroidJavaObject detectedItemSparseArray = mAndroidJO.Call<AndroidJavaObject>("detect", frame.AndroidJO);
             int arraySize = detectedItemSparseArray.Call<int>("size");
 
             for (int i = 0; i < arraySize; i++)
