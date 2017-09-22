@@ -62,7 +62,7 @@ namespace com.google.android.gms.vision.face
 
             public Builder SetMode(int mode)
             {
-                mFaceDetectorBuilderJO.Call("setMode", mode);
+                mFaceDetectorBuilderJO = mFaceDetectorBuilderJO.Call<AndroidJavaObject>("setMode", mode);
                 return this;
             }
 
